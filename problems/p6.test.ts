@@ -33,6 +33,7 @@ describe("p6", () => {
       await findAllMoviesThatAUserWatched(rachel.id),
       sortBy((movie) => movie.id)
     );
+ 
     expect(actual).toEqual(expected);
   });
 

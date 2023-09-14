@@ -46,7 +46,7 @@ describe("p4", () => {
       filter((movie) => movie.parentalRating === "PG-13"),
       sortBy((movie) => movie.releaseYear)
     );
-
+      console.log(allPG13MoviesFromSeed)
     const allPG13Movies = pipe(
       await getAllPG13Movies(),
       sortBy((movie) => movie.releaseYear)

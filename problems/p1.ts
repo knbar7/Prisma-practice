@@ -1,5 +1,19 @@
-import { prisma } from "./prisma";
+import { PrismaClient } from "@prisma/client";
 
-// Hint: look up "orderBy"
-// get an array of all users
-export const getAllUsers = () => {};
+const prisma = new PrismaClient();
+
+export const getAllUsers = async () => {
+  try {
+    const allUsers = await prisma.user.findMany({
+      orderBy:{
+          username: 'asc',
+      }
+    });
+
+    return allUsers;
+  } catch (error) {
+    throw new Error(`Error fetching all users: ${error}`);
+  } finally {
+    await prisma.$disconnect();
+  }
+};

@@ -13,7 +13,7 @@ describe("p3", () => {
     expect(getAverageUserAge).toBeInstanceOf(Function);
   });
 
-  it("should return the youngest user in an array if howManyUsersToGrab = 1", async () => {
+  it("should return the average age of all users", async () => {
     const { users } = await seedFixtures();
     const allUsers = Object.values(users);
     const ageSum = sumBy(allUsers, (n) => n.age);

@@ -35,7 +35,6 @@ describe("p4", () => {
       await getAllMoviesWithAverageScoreOverN(3),
       sortBy((movie) => movie.id)
     );
-
     expect(actual).toEqual(expected);
   });
 
