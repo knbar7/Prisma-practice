@@ -6,64 +6,62 @@ import { prisma } from "./prisma";
 
 // find the critic with the lowest average score
 export const findTheGrumpiestCriticId = async () => {
-    try{
-        const criticAverage = await prisma.starRating.groupBy({
-            by: ['userId'],
-            _avg: {
-                score: true
-            }
-        })
-        
-        const critic = criticAverage.reduce((acc, critic) => {
-            if(critic._avg.score === null) {
-                return acc;
-            }
-            if(acc._avg.score === null) {
-                return acc = critic;
-            }
-            if(critic._avg.score < acc._avg.score) {
-                return acc = critic;
-            }
-            return acc;
-        })
+  try {
+    const criticAverage = await prisma.starRating.groupBy({
+      by: ["userId"],
+      _avg: {
+        score: true,
+      },
+    });
 
-        return critic.userId;
+    const critic = criticAverage.reduce((acc, critic) => {
+      if (critic._avg.score === null) {
+        return acc;
+      }
+      if (acc._avg.score === null) {
+        return (acc = critic);
+      }
+      if (critic._avg.score < acc._avg.score) {
+        return (acc = critic);
+      }
+      return acc;
+    });
 
-    }catch(error){
-        throw new Error(`Error fetching average scores: ${error}`)
-    }finally{
-        await prisma.$disconnect();
-    }
+    return critic.userId;
+  } catch (error) {
+    throw new Error(`Error fetching average scores: ${error}`);
+  } finally {
+    await prisma.$disconnect();
+  }
 };
 
 // find the critic with the highest average score
 export const findTheNicestCriticId = async () => {
-    try{
-        const criticAverage = await prisma.starRating.groupBy({
-            by: ['userId'],
-            _avg: {
-                score: true
-            }
-        })
-        
-        const critic = criticAverage.reduce((acc, critic) => {
-            if(critic._avg.score === null) {
-                return acc;
-            }
-            if(acc._avg.score === null) {
-                return acc = critic;
-            }
-            if(critic._avg.score > acc._avg.score) {
-                return acc = critic;
-            }
-            return acc;
-        })
+  try {
+    const criticAverage = await prisma.starRating.groupBy({
+      by: ["userId"],
+      _avg: {
+        score: true,
+      },
+    });
 
-        return critic.userId;
+    const critic = criticAverage.reduce((acc, critic) => {
+      if (critic._avg.score === null) {
+        return acc;
+      }
+      if (acc._avg.score === null) {
+        return (acc = critic);
+      }
+      if (critic._avg.score > acc._avg.score) {
+        return (acc = critic);
+      }
+      return acc;
+    });
 
-    }catch(error){
-        throw new Error(`Error fetching average scores: ${error}`)
-    }finally{
-        await prisma.$disconnect();
-    }
+    return critic.userId;
+  } catch (error) {
+    throw new Error(`Error fetching average scores: ${error}`);
+  } finally {
+    await prisma.$disconnect();
+  }
 };

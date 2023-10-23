@@ -33,12 +33,12 @@ describe("p7", () => {
     const expected = pipe(
       petersRatings,
       averageBy((n) => n.score),
-      (n) => n.toPrecision(5)
+      (n) => n.toPrecision(5),
     );
 
     const actual = await pipe(
       await getAverageScoreForUser(peter.id),
-      (n) => n && n.toPrecision(5)
+      (n) => n && n.toPrecision(5),
     );
 
     expect(actual).toEqual(expected);
@@ -53,12 +53,12 @@ describe("p7", () => {
     const expected = pipe(
       rachelsRatings,
       averageBy((n) => n.score),
-      (n) => n.toPrecision(5)
+      (n) => n.toPrecision(5),
     );
 
     const actual = await pipe(
       await getAverageScoreForUser(rachel.id),
-      (n) => n && n.toPrecision(5)
+      (n) => n && n.toPrecision(5),
     );
 
     expect(actual).toEqual(expected);

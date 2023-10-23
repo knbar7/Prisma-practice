@@ -29,11 +29,11 @@ describe("p4", () => {
         return acc;
       }, [] as number[]),
       map((id) => Object.values(allMovies).find((m) => m.id === id)),
-      sortBy((movie) => movie!.id)
+      sortBy((movie) => movie!.id),
     );
     const actual = pipe(
       await getAllMoviesWithAverageScoreOverN(3),
-      sortBy((movie) => movie.id)
+      sortBy((movie) => movie.id),
     );
     expect(actual).toEqual(expected);
   });
@@ -52,12 +52,12 @@ describe("p4", () => {
         return acc;
       }, [] as number[]),
       map((id) => Object.values(allMovies).find((m) => m.id === id)),
-      sortBy((movie) => movie!.id)
+      sortBy((movie) => movie!.id),
     );
 
     const actual = pipe(
       await getAllMoviesWithAverageScoreOverN(4),
-      sortBy((movie) => movie.id)
+      sortBy((movie) => movie.id),
     );
 
     expect(actual).toEqual(expected);

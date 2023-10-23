@@ -23,7 +23,7 @@ describe("p4", () => {
           releaseYear: z.number(),
           parentalRating: z.string(),
         })
-        .strict()
+        .strict(),
     );
 
     const isValidShape = await schema
@@ -44,12 +44,12 @@ describe("p4", () => {
         releaseYear,
       })),
       filter((movie) => movie.parentalRating === "PG-13"),
-      sortBy((movie) => movie.releaseYear)
+      sortBy((movie) => movie.releaseYear),
     );
-      console.log(allPG13MoviesFromSeed)
+    console.log(allPG13MoviesFromSeed);
     const allPG13Movies = pipe(
       await getAllPG13Movies(),
-      sortBy((movie) => movie.releaseYear)
+      sortBy((movie) => movie.releaseYear),
     );
     expect(allPG13Movies).toEqual(allPG13MoviesFromSeed);
   });
@@ -65,7 +65,7 @@ describe("p4", () => {
         parentalRating,
         releaseYear,
       })),
-      reverse
+      reverse,
     );
 
     const allPG13Movies = await getAllPG13Movies();

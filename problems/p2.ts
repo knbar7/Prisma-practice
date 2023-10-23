@@ -6,19 +6,18 @@ import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
 export const getNYoungestUsers = async (howManyUsersToGrab: number) => {
-    try {
-        const users = await prisma.user.findMany({
-            orderBy:{
-                age: 'asc',
-            },
-            take: howManyUsersToGrab,
-            
-        });
-    
-        return users;
-      } catch (error) {
-        throw new Error(`Error fetching users: ${error}`);
-      } finally {
-        await prisma.$disconnect();
-      }
+  try {
+    const users = await prisma.user.findMany({
+      orderBy: {
+        age: "asc",
+      },
+      take: howManyUsersToGrab,
+    });
+
+    return users;
+  } catch (error) {
+    throw new Error(`Error fetching users: ${error}`);
+  } finally {
+    await prisma.$disconnect();
+  }
 };

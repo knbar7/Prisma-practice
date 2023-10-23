@@ -26,13 +26,13 @@ describe("p10", () => {
     const usersNotUnder20 = pipe(
       Object.values(users),
       filter((user) => user.age >= 20),
-      sortBy((user) => user.age)
+      sortBy((user) => user.age),
     );
 
     await deleteAllUsersWithAgeUnderN(20);
     const usersAfterMutation = pipe(
       await prisma.user.findMany({}),
-      sortBy((user) => user.age)
+      sortBy((user) => user.age),
     );
 
     console.log({ usersUnder20: usersNotUnder20, usersAfterMutation });

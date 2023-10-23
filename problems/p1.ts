@@ -5,9 +5,9 @@ const prisma = new PrismaClient();
 export const getAllUsers = async () => {
   try {
     const allUsers = await prisma.user.findMany({
-      orderBy:{
-          username: 'asc',
-      }
+      orderBy: {
+        username: "asc",
+      },
     });
 
     return allUsers;

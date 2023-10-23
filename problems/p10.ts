@@ -2,41 +2,41 @@ import { prisma } from "./prisma";
 
 // Deleting a user and their associated star ratings if their age is below n
 export const deleteAllUsersWithAgeUnderN = async (n: number) => {
-    try {
-        // Find users with age less than n
-        const usersToDelete = await prisma.user.findMany({
-            where: {
-                age: {
-                    lt: n
-                }
-            }
-        });
+  try {
+    // Find users with age less than n
+    const usersToDelete = await prisma.user.findMany({
+      where: {
+        age: {
+          lt: n,
+        },
+      },
+    });
 
-        // Collect all user IDs to be deleted
-        const userIdsToDelete = usersToDelete.map(user => user.id);
+    // Collect all user IDs to be deleted
+    const userIdsToDelete = usersToDelete.map((user) => user.id);
 
-        // Find and delete star ratings associated with the users to delete
-        const deleteStarRatings = await prisma.starRating.deleteMany({
-            where: {
-                userId: {
-                    in: userIdsToDelete
-                }
-            }
-        });
+    // Find and delete star ratings associated with the users to delete
+    const deleteStarRatings = await prisma.starRating.deleteMany({
+      where: {
+        userId: {
+          in: userIdsToDelete,
+        },
+      },
+    });
 
-        // Delete the users
-        const deleteUsers = await prisma.user.deleteMany({
-            where: {
-                id: {
-                    in: userIdsToDelete
-                }
-            }
-        });
+    // Delete the users
+    const deleteUsers = await prisma.user.deleteMany({
+      where: {
+        id: {
+          in: userIdsToDelete,
+        },
+      },
+    });
 
-        return { deleteStarRatings, deleteUsers };
-    } catch (error) {
-        throw new Error(`Error deleting users: ${error}`);
-    } finally {
-        await prisma.$disconnect();
-    }
+    return { deleteStarRatings, deleteUsers };
+  } catch (error) {
+    throw new Error(`Error deleting users: ${error}`);
+  } finally {
+    await prisma.$disconnect();
+  }
 };

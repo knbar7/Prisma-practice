@@ -24,16 +24,18 @@ describe("p6", () => {
       rachelsRatings,
       map(
         (rating) =>
-          Object.values(allMovies).find((movie) => movie.id === rating.movieId)!
+          Object.values(allMovies).find(
+            (movie) => movie.id === rating.movieId,
+          )!,
       ),
-      sortBy((movie) => movie.id)
+      sortBy((movie) => movie.id),
     );
 
     const actual = pipe(
       await findAllMoviesThatAUserWatched(rachel.id),
-      sortBy((movie) => movie.id)
+      sortBy((movie) => movie.id),
     );
- 
+
     expect(actual).toEqual(expected);
   });
 
@@ -48,14 +50,16 @@ describe("p6", () => {
       jonsRatings,
       map(
         (rating) =>
-          Object.values(allMovies).find((movie) => movie.id === rating.movieId)!
+          Object.values(allMovies).find(
+            (movie) => movie.id === rating.movieId,
+          )!,
       ),
-      sortBy((movie) => movie.id)
+      sortBy((movie) => movie.id),
     );
 
     const actual = pipe(
       await findAllMoviesThatAUserWatched(jon.id),
-      sortBy((movie) => movie.id)
+      sortBy((movie) => movie.id),
     );
 
     expect(actual).toEqual(expected);
