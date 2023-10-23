@@ -1,7 +1,6 @@
 // hint:find all stars with the movies "included" on, then good ol' javascript should finish the job
 // This one should require more javascript work than the previous ones
 import { prisma } from "./prisma";
-import { StarRating } from "@prisma/client";
 
 export const getAllMoviesWithAverageScoreOverN = async (n: number) => {
   try {
@@ -37,7 +36,5 @@ export const getAllMoviesWithAverageScoreOverN = async (n: number) => {
     return filteredMovieDetails;
   } catch (error) {
     throw new Error(`Error fetching movies by star rating: ${error}`);
-  } finally {
-    await prisma.$disconnect();
   }
 };

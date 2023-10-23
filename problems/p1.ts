@@ -1,19 +1,13 @@
-import { PrismaClient } from "@prisma/client";
-
-const prisma = new PrismaClient();
+import { prisma } from "./prisma";
 
 export const getAllUsers = async () => {
-  try {
-    const allUsers = await prisma.user.findMany({
+  return await prisma.user
+    .findMany({
       orderBy: {
         username: "asc",
       },
+    })
+    .catch(() => {
+      throw new Error("Couldn't find user");
     });
-
-    return allUsers;
-  } catch (error) {
-    throw new Error(`Error fetching all users: ${error}`);
-  } finally {
-    await prisma.$disconnect();
-  }
 };

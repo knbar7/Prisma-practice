@@ -1,5 +1,3 @@
-import { maxBy, minBy } from "remeda";
-import { number } from "zod";
 import { prisma } from "./prisma";
 
 // Always tell truths, don't you ever lie, to solve this problem, just try a `groupBy`
@@ -61,7 +59,5 @@ export const findTheNicestCriticId = async () => {
     return critic.userId;
   } catch (error) {
     throw new Error(`Error fetching average scores: ${error}`);
-  } finally {
-    await prisma.$disconnect();
   }
 };

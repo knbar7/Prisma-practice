@@ -36,7 +36,5 @@ export const deleteAllUsersWithAgeUnderN = async (n: number) => {
     return { deleteStarRatings, deleteUsers };
   } catch (error) {
     throw new Error(`Error deleting users: ${error}`);
-  } finally {
-    await prisma.$disconnect();
   }
 };

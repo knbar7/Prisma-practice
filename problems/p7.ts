@@ -15,7 +15,5 @@ export const getAverageScoreForUser = async (userId: number) => {
     );
   } catch (error) {
     throw new Error(`Error fetching average scores: ${error}`);
-  } finally {
-    await prisma.$disconnect();
   }
 };

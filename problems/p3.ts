@@ -12,7 +12,5 @@ export const getAverageUserAge = async () => {
     return users._avg.age;
   } catch (error) {
     throw new Error(`Error getting average age: ${error}`);
-  } finally {
-    await prisma.$disconnect();
   }
 };

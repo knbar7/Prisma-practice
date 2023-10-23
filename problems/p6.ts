@@ -1,5 +1,4 @@
 import { prisma } from "./prisma";
-import { StarRating } from "@prisma/client";
 
 export const findAllMoviesThatAUserWatched = async (userId: number) => {
   try {
@@ -27,7 +26,5 @@ export const findAllMoviesThatAUserWatched = async (userId: number) => {
     return formattedMovies;
   } catch (error) {
     throw new Error(`Error fetching movies: ${error}`);
-  } finally {
-    await prisma.$disconnect();
   }
 };

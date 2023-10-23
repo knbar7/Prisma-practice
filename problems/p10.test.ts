@@ -35,7 +35,6 @@ describe("p10", () => {
       sortBy((user) => user.age),
     );
 
-    console.log({ usersUnder20: usersNotUnder20, usersAfterMutation });
     expect(usersAfterMutation).toEqual(usersNotUnder20);
   });
 });
